@@ -1,0 +1,5 @@
+.bg-hero {
+    background-image: url('sky.jpg');
+    background-size: cover;
+    background-position: center;
+}

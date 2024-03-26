@@ -4,9 +4,12 @@ import (
 	"flag"
 	"log"
 	"net/http"
+
+	"github.com/sophiefuu/go_getter/internal/models"
 )
 
 type application struct {
+	eventlist *models.EventlistModel
 }
 
 func main() {

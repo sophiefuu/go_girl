@@ -1,6 +1,10 @@
 package models
 
 import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
 	"time"
 )
 
@@ -19,9 +23,34 @@ type EventResponse struct {
 }
 
 type EventsResponse struct {
-	Event *[]Event `json:"books"`
+	Events *[]Event `json:"books"`
 }
 
 type EventlistModel struct {
 	Endpoint string
+}
+
+func (m *EventlistModel) GetAll() (*[]Event, error) {
+	resp, err := http.Get(m.Endpoint)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("unexpected status: %s", resp.Status)
+	}
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var eventsResp EventsResponse
+	err = json.Unmarshal(data, &eventsResp)
+	if err != nil {
+		return nil, err
+	}
+
+	return eventsResp.Events, nil
 }
