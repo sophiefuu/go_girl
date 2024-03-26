@@ -5,22 +5,9 @@ import (
 	"log"
 	"net/http"
 	"text/template"
-	"time"
 )
 
-type Event struct {
-	ID          int64     `json:"id"`
-	CreatedAt   time.Time `json:"-"`
-	Title       string    `json:"title"`
-	Category    []string  `json:"category"`
-	Description string    `json:"description"`
-	Location    string    `json:"location"`
-	Date        time.Time `json:"date"`
-}
-
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	event := Event{}
-
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
@@ -34,9 +21,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error Here", 500)
 		return
 	}
-	log.Print("Parsed file")
 
-	if err := tmpl.Execute(w, event); err != nil {
+	if err := tmpl.Execute(w, nil); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
