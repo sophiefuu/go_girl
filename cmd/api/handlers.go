@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/sophiefuu/go_getter/cmd/api/data"
+	"github.com/sophiefuu/go_getter/internal/data"
 )
 
 func (app *application) healthcheck(w http.ResponseWriter, r *http.Request) {
