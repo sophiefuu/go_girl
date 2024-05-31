@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/sophiefuu/go_girl/internal/models"
 )
@@ -13,7 +12,7 @@ type application struct {
 }
 
 func main() {
-	addr := os.Getenv("PORT") //flag.String("addr", ":8080", "HTTP network address")
+	addr := "8080" //os.Getenv("PORT") //flag.String("addr", ":8080", "HTTP network address")
 	app := &application{}
 	srv := &http.Server{
 		Addr:    ":" + addr,

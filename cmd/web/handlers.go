@@ -35,6 +35,10 @@ func (app *application) eventCreate(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Events Create Page coming soon!")
 }
 
+func (app *application) sportsView(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Sports Page coming soon!")
+}
+
 func (app *application) shopView(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Shop Page coming soon!")
 }
