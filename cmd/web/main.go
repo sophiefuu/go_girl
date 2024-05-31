@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/sophiefuu/go_getter/internal/models"
+	"github.com/sophiefuu/go_girl/internal/models"
 )
 
 type application struct {

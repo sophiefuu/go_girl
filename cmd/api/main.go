@@ -10,7 +10,7 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
-	"github.com/sophiefuu/go_getter/internal/data"
+	"github.com/sophiefuu/go_girl/internal/data"
 )
 
 type config struct {
