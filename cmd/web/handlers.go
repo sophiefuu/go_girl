@@ -36,7 +36,18 @@ func (app *application) eventCreate(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) sportsView(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Sports Page coming soon!")
+	file := "./ui/html/halfMarathonTraining.html"
+
+	tmpl, err := template.ParseFiles(file)
+	if err != nil {
+		log.Print(err.Error())
+		http.Error(w, "Internal Server Error Here", 500)
+		return
+	}
+
+	if err := tmpl.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func (app *application) shopView(w http.ResponseWriter, r *http.Request) {
