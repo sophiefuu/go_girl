@@ -1,9 +1,9 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/sophiefuu/go_girl/internal/models"
 )
@@ -13,14 +13,14 @@ type application struct {
 }
 
 func main() {
-	addr := flag.String("addr", "8080", "HTTP network address") //os.Getenv("PORT")
+	addr := os.Getenv("PORT") //flag.String("addr", ":8080", "HTTP network address") //os.Getenv("PORT")
 	app := &application{}
 	srv := &http.Server{
-		Addr:    *addr,
+		Addr:    ":" + addr,
 		Handler: app.routes(),
 	}
 
-	log.Printf("Starting the server on %s", *addr)
+	log.Printf("Starting the server on %s", addr)
 	err := srv.ListenAndServe()
 	log.Fatal(err)
 
